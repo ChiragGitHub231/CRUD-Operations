@@ -32,14 +32,25 @@
                 <br />
                 <form action="/update/{{d.id}}" method="post"> {% csrf_token %}
                     <div class="form-group">
-                        <input type="text" placeholder="Enter Username" class="form-control" name="name" value={{d.name}} required>
-                        <input type="email" placeholder="Enter Email Id" class="form-control mt-2" name="email" value={{d.email}} required>
-                        <input type="tel" placeholder="Enter Contact No" class="form-control mt-2" name="contact" value={{d.contact}} required>
-                        <input type="text" placeholder="Enter Home Address" class="form-control mt-2" name="address" value={{d.address}} required>
+                        <input type="text" placeholder="Enter Username" class="form-control" name="name"
+                            value={{d.name}} required oninvalid="this.setCustomValidity('Username is required');"
+                            oninput="this.setCustomValidity('')">
+                        <input type="email" placeholder="Enter Email Id" class="form-control mt-2" name="email"
+                            value={{d.email}} required oninvalid="this.setCustomValidity('Email Id is required');"
+                            oninput="this.setCustomValidity('')">
+                        <input type="tel" placeholder="Enter Contact No" class="form-control mt-2" name="contact"
+                            value={{d.contact}} required
+                            oninvalid="this.setCustomValidity('Enter 10 digit valid Contact No');"
+                            oninput="this.setCustomValidity('')" pattern="[1-9][0-9]{9}">
+                        <input type="text" placeholder="Enter Home Address" class="form-control mt-2" name="address"
+                            value={{d.address}} required oninvalid="this.setCustomValidity('Address is required');"
+                            oninput="this.setCustomValidity('')">
                     </div>
                     <div class="form-group mt-2">
-                        <select id="gender" class="form-control" name="gender" required>
-                            <option selected>{{d.gender}}</option>
+                        <select id="gender" class="form-control" name="gender" required
+                            oninvalid="this.setCustomValidity('Please select a gender');"
+                            oninput="this.setCustomValidity('')">
+                            <option value="" selected>{{d.gender}}</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Others">Others</option>
