@@ -9,7 +9,12 @@ def index(request):
 
     return render(request, "index.html", context)
 
+
 def insertData(request):
+    # Return all the user objects and stores to data variable
+    data=User.objects.all()
+    context={"data":data}
+
     # if form is submitted then action request is handled
     if request.method=="POST":
         # gets & stores the form data to variables
@@ -24,7 +29,8 @@ def insertData(request):
         query.save()
 
     # render & redirect to index.html page
-    return render(request, "index.html")
+    return render(request, "index.html", context)
+
 
 def updateData(request,id):
     # Filter the user object and stores to d variable
@@ -59,9 +65,13 @@ def updateData(request,id):
     # render & redirect to edit.html page
     return render(request, "edit.html", context)
 
-def deleteData(request,id):
-    # Return all the user objects and stores to data variable
-    data=User.objects.all()
-    context={"data":data}
 
-    return render(request, "index.html", context)
+def deleteData(request,id):
+    # Filter the user object and stores to d variable
+    d=User.objects.get(id=id)
+    
+    # Delete the user record
+    d.delete()
+
+    # Once record is deleted then it is redirected to index.html page
+    return redirect("/")
