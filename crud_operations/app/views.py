@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import User
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,13 @@ def insertData(request):
         query=User(name=name, email=email, contact=contact, address=address, gender=gender)
         query.save()
 
-    # render & redirect to index.html page
+        # Display message for insertion
+        messages.info(request,"Data Inserted Successfully")
+
+        # redirect to index.html page
+        return redirect("/")
+
+    # render index.html page
     return render(request, "index.html", context)
 
 
@@ -59,6 +66,9 @@ def updateData(request,id):
         # Save the updated record
         edit.save()
 
+        # Display message for updation
+        messages.warning(request,"Data Updated Successfully")
+
         # Once record is updated then it is redirected to index.html page
         return redirect("/")
 
@@ -72,6 +82,9 @@ def deleteData(request,id):
     
     # Delete the user record
     d.delete()
+
+    # Display message for deletion
+    messages.error(request,"Data Deleted Successfully")
 
     # Once record is deleted then it is redirected to index.html page
     return redirect("/")
