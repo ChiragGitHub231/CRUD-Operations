@@ -42,9 +42,9 @@
                     <div class="form-group mt-2">
                         <select id="gender" class="form-control" name="gender" required>
                             <option selected>Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="others">Others</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                     <div class="d-grid gap-2 mt-4">
@@ -78,8 +78,8 @@
                             <td>{{d.contact}}</td>
                             <td>{{d.address}}</td>
                             <td>{{d.gender}}</td>
-                            <td><button type="button" class="btn btn-outline-primary">Edit</button></td>
-                            <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
+                            <td><a type="button" href="/update/{{d.id}}" class="btn btn-outline-primary">Edit</a></td>
+                            <td><a type="button" href="/delete/{{d.id}}" class="btn btn-outline-danger">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
