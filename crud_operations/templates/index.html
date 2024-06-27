@@ -21,7 +21,7 @@
         </div>
     </nav>
     <!-- navbar end -->
-    
+
     <!-- container start -->
     <div class="container mt-5">
         <div class="row">
@@ -32,9 +32,12 @@
                 <form action="/insert" method="post"> {% csrf_token %}
                     <div class="form-group">
                         <input type="text" placeholder="Enter Username" class="form-control" name="name" required>
-                        <input type="email" placeholder="Enter Email Id" class="form-control mt-2" name="email" required>
-                        <input type="tel" placeholder="Enter Contact No" class="form-control mt-2" name="contact" required>
-                        <input type="text" placeholder="Enter Home Address" class="form-control mt-2" name="address" required>
+                        <input type="email" placeholder="Enter Email Id" class="form-control mt-2" name="email"
+                            required>
+                        <input type="tel" placeholder="Enter Contact No" class="form-control mt-2" name="contact"
+                            required>
+                        <input type="text" placeholder="Enter Home Address" class="form-control mt-2" name="address"
+                            required>
                     </div>
                     <div class="form-group mt-2">
                         <select id="gender" class="form-control" name="gender" required>
@@ -52,7 +55,35 @@
 
             <!-- Columns to display the data -->
             <div class="col-md-8">
-                
+                <h2 class="text-center text-white bg-dark p-2">User Details</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email Id</th>
+                            <th scope="col">Contact No</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.id}}</th>
+                            <td>{{d.name}}</td>
+                            <td>{{d.email}}</td>
+                            <td>{{d.contact}}</td>
+                            <td>{{d.address}}</td>
+                            <td>{{d.gender}}</td>
+                            <td><button type="button" class="btn btn-outline-primary">Edit</button></td>
+                            <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
